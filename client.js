@@ -2,6 +2,7 @@
 
 // declare global variables
 let employeeArray = [];
+let monthlySalaryTotal = 0;
 
 $(readyNow);
 
@@ -29,16 +30,18 @@ function updateEmployees(){ // takes user input, appends to DOM table, pushes to
   let lastNameIn = $('#lastName').val();
   let idIn = $('#idNumber').val();
   let titleIn = $('#jobTitle').val();
-  let salaryIn = $('#annualSalary').val();
+  let salaryIn = parseInt($('#annualSalary').val());
   let fNameHtml = '<td>' + firstNameIn + '</td>';
   let lNameHtml = '<td>' + lastNameIn + '</td>';
   let idHtml = '<td>' + idIn+ '</td>';
   let titleHtml = '<td>' + titleIn+ '</td>';
-  let salaryHtml = '<td>' + salaryIn + '</td>';
+  let salaryHtml = '<td>$' + salaryIn + '</td>';
   $('#empTable').append('<tr>' + fNameHtml + lNameHtml + idHtml + titleHtml + salaryHtml + '</tr>');
   let employeeEntry = new Employee(firstNameIn, lastNameIn, idIn, titleIn, salaryIn);
   employeeArray.push(employeeEntry);
+  monthlySalaryTotal = (monthlySalaryTotal + salaryIn);
   clearInputs();
+  $('#monthlyNumber').text('Total Monthly: $' + monthlySalaryTotal/12);
 }
 
 function clearInputs(){ // clears input fields after employee is submitted
