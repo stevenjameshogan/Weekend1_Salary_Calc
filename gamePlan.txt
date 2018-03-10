@@ -1,0 +1,45 @@
+BASE MODE
+
+1) Create HTML base
+  - heading ("Salary Calculator")
+  - Input fields and submit button
+  - Start table (header row)
+  - Total div
+
+2) Create CSS base - basic styling for readability
+
+3) Create Employee Class
+  - use user input variables as arguments for new Employee (nameIn, salaryIn, etc)
+
+4) Declare global variables
+  - Employee array
+  - User inputs
+
+5) Create eventHandlers function for Submit button
+
+6) Append to DOM function
+  - Take user inputs, push to Employee class
+  - Loop through array, append to table in DOM (see mini challenge 5)
+  - Call calculate budget function
+  - Clear input fields/call clear fields function
+
+7) Calculate monthly budget function
+  - Add total yearly salaries (add function as method of Employee class)
+  - Divide by 12
+  - Append monthly total to DOM
+  - Check against 20k limit/call check limit function
+  - If >20k, change to red background
+
+HARD MODE
+
+1) Create styling
+2) Delete buttons
+  - Append new TR to Table
+  - Append delete buttons to new TR
+  - Update eventHandlers function to account for new buttons
+  - Add removeFromDom function
+
+STRETCH MODE
+
+1) Create removeFromBudget function (called by removeFromDom) that
+updates budget
