@@ -7,7 +7,6 @@ let monthlySalaryTotal = 0;
 $(readyNow);
 
 function readyNow(){ // functions to call after DOM loads
-  console.log('JQ');
   eventHandlers();
 }
 
@@ -39,11 +38,24 @@ function updateEmployees(){ // takes user input, appends to DOM table, pushes to
   $('#empTable').append('<tr>' + fNameHtml + lNameHtml + idHtml + titleHtml + salaryHtml + '</tr>');
   let employeeEntry = new Employee(firstNameIn, lastNameIn, idIn, titleIn, salaryIn);
   employeeArray.push(employeeEntry);
-  monthlySalaryTotal = (monthlySalaryTotal + salaryIn);
+  updateSalaries(salaryIn);
   clearInputs();
-  $('#monthlyNumber').text('Total Monthly: $' + monthlySalaryTotal/12);
 }
 
 function clearInputs(){ // clears input fields after employee is submitted
   $( '.input' ).val( '' );
+}
+
+function updateSalaries(salary) { // updates monthly salary budget, appends to DOM
+  let monthlySalary = salary / 12;
+  monthlySalaryTotal = monthlySalaryTotal + monthlySalary;
+  $('#budgetDisplay').empty();
+  $('#budgetDisplay').append(monthlySalaryTotal.toFixed(2));
+  budgetCheck(monthlySalaryTotal);
+}
+
+function budgetCheck(total) { // checks if monthly budget is >= 20k, if so changes color to red
+  if (total >= 20000) {
+    $('#budgetDisplay').css("background-color", "red");
+  }
 }
