@@ -1,11 +1,6 @@
 /* jshint esversion: 6 */
-// declare global variables
 
-let firstNameIn = $('#firstName').val();
-let lastNameIn = $('#lastName').val();
-let idIn = $('#idNumber').val();
-let titleIn = $('#jobTitle').val();
-let salaryIn = $('#annualSalary').val();
+// declare global variables
 let employeeArray = [];
 
 $(readyNow);
@@ -29,9 +24,23 @@ function eventHandlers() { // listens for user submissions and inputs
   $('#submitButton').on('click', updateEmployees);
 }
 
-function updateEmployees(){ // takes user input, creates new Employee instance, adds to Employee array
+function updateEmployees(){ // takes user input, appends to DOM table, pushes to Employee array
+  let firstNameIn = $('#firstName').val();
+  let lastNameIn = $('#lastName').val();
+  let idIn = $('#idNumber').val();
+  let titleIn = $('#jobTitle').val();
+  let salaryIn = $('#annualSalary').val();
+  let fNameHtml = '<td>' + firstNameIn + '</td>';
+  let lNameHtml = '<td>' + lastNameIn + '</td>';
+  let idHtml = '<td>' + idIn+ '</td>';
+  let titleHtml = '<td>' + titleIn+ '</td>';
+  let salaryHtml = '<td>' + salaryIn + '</td>';
+  $('#empTable').append('<tr>' + fNameHtml + lNameHtml + idHtml + titleHtml + salaryHtml + '</tr>');
+  let employeeEntry = new Employee(firstNameIn, lastNameIn, idIn, titleIn, salaryIn);
+  employeeArray.push(employeeEntry);
+  clearInputs();
 }
 
-function appendEmpTable(){ // appends employee info as new row in table
-
+function clearInputs(){ // clears input fields after employee is submitted
+  $( '.input' ).val( '' );
 }
